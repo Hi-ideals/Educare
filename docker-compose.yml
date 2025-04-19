@@ -11,6 +11,8 @@ services:
       MYSQL_PASSWORD: EducareHitpL_2019
     ports:
       - "3309:3306"
+    volumes:
+      - ./educare_prod.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - tomcat-network-educare
     healthcheck:
