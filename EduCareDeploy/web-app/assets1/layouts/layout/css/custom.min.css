@@ -1,0 +1,68 @@
+/**********@author Akash Badiger***************/
+.panel{
+	margin-top:6px;
+	
+}
+
+.margin-bottom-20{
+	margin-bottom:20px;
+	
+}
+.margin-bottom-10{
+	margin-bottom:10px;
+	
+}
+
+
+.page-sidebar .page-sidebar-menu>li>a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a{
+	font-family:roboto;
+	
+}
+
+.box.box-info {
+    border-top-color: #666666;
+}
+.box {
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin: 20px 0;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+/*---------- Alert message for success full----------------*/
+#snoAlertBox {
+	position: absolute;
+	z-index: 1400;
+	top: 2%;
+	right: 4%;
+	margin: 0px auto;
+	text-align: center;
+	display: none;
+	background-color: #4CAF50;
+	padding: 20px;
+	color: white;
+	opacity: 1;
+	transition: opacity 0.6s;
+	margin-bottom: 15px;
+}
+
+.alert.success {
+	background-color: #4CAF50;
+}
+
+.row1 {
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
+	min-height: 50px;
+	min-height: 60px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 15px;
+}
+/*---------- pagination ----------------*/
+.pagination>li>span {
+background-color: #41b2f4;
+color: #FFF;
+border: 1px solid #41b2f4;
+}
