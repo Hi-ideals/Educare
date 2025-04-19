@@ -3,6 +3,7 @@ WORKDIR /app
 RUN wget https://github.com/grails/grails-core/releases/download/v2.4.5/grails-2.4.5.zip \
     && unzip grails-2.4.5.zip \
     && mv grails-2.4.5 /opt/grails
+<<<<<<< HEAD
 
 ENV GRAILS_HOME=/opt/grails
 ENV PATH="$GRAILS_HOME/bin:$PATH"
@@ -10,10 +11,18 @@ ENV PATH="$GRAILS_HOME/bin:$PATH"
 COPY ./EducareDeploy /app
 RUN grails war
 
+=======
+ENV GRAILS_HOME=/opt/grails
+ENV PATH="$GRAILS_HOME/bin:$PATH"
+COPY ./EduCareDeploy /app
+RUN grails war
+
+
+
+>>>>>>> 92b4ae8280d33f0ab1dc65799743406ae2b20b4a
 FROM tomcat:9.0.82-jdk8-temurin
 LABEL "Project"="VETBIDATCOL"
 LABEL "Author"="Jai"
-
 WORKDIR /usr/local/tomcat/webapps/
 RUN rm -rf ROOT*
 COPY --from=build /app/target/*.war ROOT.war

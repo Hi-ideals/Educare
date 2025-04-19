@@ -32,9 +32,9 @@ services:
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: 3306
-      MYSQL_DB: deducare_prod
+      MYSQL_DB: educare_prod
       MYSQL_USER: educare
-      MYSQL_PASSWORD: ducareHitpL_2019
+      MYSQL_PASSWORD: EducareHitpL_2019
     ports:
       - "8099:8080"
     networks:
