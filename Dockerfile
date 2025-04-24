@@ -5,8 +5,10 @@ RUN wget https://github.com/grails/grails-core/releases/download/v2.4.5/grails-2
     && mv grails-2.4.5 /opt/grails
 ENV GRAILS_HOME=/opt/grails
 ENV PATH="$GRAILS_HOME/bin:$PATH"
-COPY ./EducareDeploy /app
+COPY ./EduCareDeploy /app
 RUN grails war
+
+
 
 FROM tomcat:9.0.82-jdk8-temurin
 LABEL "Project"="VETBIDATCOL"
@@ -26,6 +28,3 @@ ENV DB_HOST=db \
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
-
-
-
