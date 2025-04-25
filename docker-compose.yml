@@ -28,7 +28,7 @@ services:
   tomcat:
     build:
       context: .
-    image: educareimage
+    image: jaicswamy962/educareimage:latest
     container_name: educareapp
     restart: always
     depends_on:
