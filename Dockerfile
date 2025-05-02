@@ -16,15 +16,22 @@ LABEL "Author"="Jai"
 WORKDIR /usr/local/tomcat/webapps/
 RUN rm -rf ROOT*
 COPY --from=build /app/target/*.war ROOT.war
-RUN wget -O mysql-connector-java-5.1.29.tar.gz https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.29.tar.gz && \
-    tar -xzvf mysql-connector-java-5.1.29.tar.gz && \
-    mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ && \
-    rm -rf mysql-connector-java-5.1.29 mysql-connector-java-5.1.29.tar.gz
+RUN apt-get update && apt-get install -y wget tar \
+    && wget -O mysql-connector-java.tar.gz https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.29.tar.gz \
+    && tar -xzf mysql-connector-java.tar.gz \
+    && mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ \
+    && rm -rf mysql-connector-java* \
+    && apt-get clean
+    
 ENV DB_HOST=db \
     DB_PORT=3306 \
     DB_NAME=educare_prod \
-    DB_USER=root \
-    DB_PASSWORD=mysql123
+    DB_USER=educare \
+    DB_PASSWORD=EducareHitpL_2019
+
+COPY wait-for-mysql.sh /usr/local/bin/wait-for-mysql.sh
+RUN chmod +x /usr/local/bin/wait-for-mysql.sh
+
 
 EXPOSE 8080
-CMD ["catalina.sh", "run"]
+CMD ["/usr/local/bin/wait-for-mysql.sh"]
