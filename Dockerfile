@@ -26,8 +26,8 @@ RUN apt-get update && apt-get install -y wget tar \
 ENV DB_HOST=db \
     DB_PORT=3306 \
     DB_NAME=educare_prod \
-    DB_USER=educare \
-    DB_PASSWORD=EducareHitpL_2019
+    DB_USER=root \
+    DB_PASSWORD=mysql123
 
 COPY wait-for-mysql.sh /usr/local/bin/wait-for-mysql.sh
 RUN chmod +x /usr/local/bin/wait-for-mysql.sh
