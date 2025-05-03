@@ -3,15 +3,6 @@ WORKDIR /app
 RUN wget https://github.com/grails/grails-core/releases/download/v2.4.5/grails-2.4.5.zip \
     && unzip grails-2.4.5.zip \
     && mv grails-2.4.5 /opt/grails
-<<<<<<< HEAD
-
-ENV GRAILS_HOME=/opt/grails
-ENV PATH="$GRAILS_HOME/bin:$PATH"
-
-COPY ./EducareDeploy /app
-RUN grails war
-
-=======
 ENV GRAILS_HOME=/opt/grails
 ENV PATH="$GRAILS_HOME/bin:$PATH"
 COPY ./EduCareDeploy /app
@@ -19,7 +10,6 @@ RUN grails war
 
 
 
->>>>>>> 92b4ae8280d33f0ab1dc65799743406ae2b20b4a
 FROM tomcat:9.0.82-jdk8-temurin
 LABEL "Project"="VETBIDATCOL"
 LABEL "Author"="Jai"
@@ -30,6 +20,8 @@ RUN wget -O mysql-connector-java-5.1.29.tar.gz https://downloads.mysql.com/archi
     tar -xzvf mysql-connector-java-5.1.29.tar.gz && \
     mv mysql-connector-java-5.1.29/mysql-connector-java-5.1.29-bin.jar /usr/local/tomcat/lib/ && \
     rm -rf mysql-connector-java-5.1.29 mysql-connector-java-5.1.29.tar.gz
+
+    
 ENV DB_HOST=db \
     DB_PORT=3306 \
     DB_NAME=educare_prod \
@@ -38,6 +30,4 @@ ENV DB_HOST=db \
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
-
-
 

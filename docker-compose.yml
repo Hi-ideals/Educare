@@ -1,5 +1,6 @@
 version: '3.8'
-services:   
+
+services:
   db:
     image: mysql:5.6
     container_name: educaredb
@@ -10,20 +11,24 @@ services:
       MYSQL_USER: educare
       MYSQL_PASSWORD: EducareHitpL_2019
     ports:
-      - "3309:3306"
+      - "3306:3306"
+    volumes:
+     - ./db_educare_prod.sql:/docker-entrypoint-initdb.d/db_educare_prod.sql
+     - ./mysql/data:/var/lib/mysql
+     - ./mysql/conf.d:/etc/mysql/conf.d
     networks:
       - tomcat-network-educare
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "mysql -u root -pmysql123 -e 'SELECT 1'"]
       interval: 10s
-      retries: 5
-      start_period: 20s
+      retries: 10
+      start_period: 40s
 
-      
+
   tomcat:
     build:
       context: .
-    image: educareimage
+    image: jaicswamy962/educareimage:latest
     container_name: educareapp
     restart: always
     depends_on:
@@ -36,14 +41,11 @@ services:
       MYSQL_USER: educare
       MYSQL_PASSWORD: EducareHitpL_2019
     ports:
-      - "8099:8080"
+      - "8081:8080"
     networks:
       - tomcat-network-educare
 
-  
+
 networks:
-  tomcat-network-educare:  # Custom network for communication between Tomcat and MySQL
+  tomcat-network-educare:  
     driver: bridge
-
-
- 
