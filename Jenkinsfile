@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "jaicswamy962/educare:latest"
-        AWS_HOST = "65.0.251.176"
+        AWS_HOST = "13.203.92.88"
     }
 
     stages {
