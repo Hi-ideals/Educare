@@ -1,0 +1,10 @@
+After logging in to the jenkins we need add 
+1. credentialsId: 'dockerhub-credentials',
+   usernameVariable: 'DOCKERHUB_USERNAME',
+   passwordVariable: 'DOCKERHUB_PASSWORD'
+
+2. we need to run (ssh-keygen) and paste the private key into the github sshkey section.
+
+3. we need to add the docker to knownhost section of the instace (get the info from the chatGPT).
+
+4. install the requied plugin (git, stageview, docker, pipeline etc).
