@@ -1,0 +1,66 @@
+ 1. Install Cloudflared
+
+wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+chmod +x cloudflared
+mv cloudflared /usr/local/bin/
+
+
+
+2. Authenticate with Cloudflare
+
+cloudflared tunnel login 
+
+* It opens a URL → Login to Cloudflare
+
+* Cert file saved at: /root/.cloudflared/cert.pem
+
+
+ 
+3. Create the Tunnel
+
+cloudflared tunnel create hiideals-tunnel
+
+/root/.cloudflared/c3a8bba6-c0bb-4565-acc2-b81b30e0c91a.json
+
+
+
+
+
+4. Create the Config File
+vi ~/.cloudflared/hiideals-config.yml
+
+tunnel: c3a8bba6-c0bb-4565-acc2-b81b30e0c91a
+credentials-file: /root/.cloudflared/c3a8bba6-c0bb-4565-acc2-b81b30e0c91a.json
+
+ingress:
+  - hostname: educare.hiideals.com
+    service: http://localhost:8099
+  - service: http_status:404
+
+
+
+5. Add DNS Record in Cloudflare
+
+Type | Name | Content (Target) | Proxy | TTL
+CNAME | educare | c3a8bba6-c0bb-4565-acc2-b81b30e0c91a.cfargotunnel.com | ✅ Proxied | Auto
+
+
+6. Run the Tunnel
+cloudflared tunnel --config ~/.cloudflared/educared-config.yml run
+
+nohup cloudflared tunnel --config ~/.cloudflared/hiideals-config.yml run &
+
+
+
+
+🎉 Done!
+You can now access your Dockerized Educare app at:
+https://educare.arthotthana.in
+
+############################important commands#############################################
+
+cloudflared tunnel list
+pkill cloudflared
+
+
+
