@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "jaicswamy962/educare:latest"
+        DOCKER_IMAGE = "docker pull jaicswamy962/educareimage:latest"
         AWS_HOST = "13.203.92.88"
     }
 
