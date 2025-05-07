@@ -46,7 +46,7 @@ pipeline {
                     sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@${AWS_HOST} '
                         if [ ! -d ~/Educare ]; then
-                            git clone git@github.com:jaiswamy/Educare.git
+                            git clone https://github.com/jaiswamy/Educare.git
                         else
                             cd ~/Educare && git pull origin main
                         fi
