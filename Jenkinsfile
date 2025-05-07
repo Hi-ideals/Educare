@@ -17,7 +17,7 @@ pipeline {
                      $class: 'GitSCM',
                      branches: [[name: '*/main']],
                      userRemoteConfigs: [[
-                         url: 'git@github.com:jaiswamy/Educare.git',
+                         url: 'https://github.com/jaiswamy/Educare.git',
                          credentialsId: 'git-credentials'
                      ]]
                  ])
