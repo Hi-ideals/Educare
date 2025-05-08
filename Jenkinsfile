@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "docker pull jaicswamy962/educareimage:latest"
-        AWS_HOST = "13.203.92.88"
+        DOCKER_IMAGE = "jaicswamy962/educareimage:latest"
+        E2E_HOST = "216.48.177.81"
     }
 
     stages {
@@ -40,11 +40,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to AWS') {
+        stage('Deploy to E2E Cloud') {
             steps {
-                sshagent(['aws-ssh-key']) {
+                sshagent(credentials: ['e2e-ssh-key']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no ubuntu@${AWS_HOST} '
+                    ssh -o StrictHostKeyChecking=no -p 7022 root@${E2E_HOST} '
                         if [ ! -d ~/Educare ]; then
                             git clone https://github.com/jaiswamy/Educare.git
                         else
@@ -52,7 +52,8 @@ pipeline {
                         fi
                         cd ~/Educare
                         docker pull ${DOCKER_IMAGE} && echo "Docker image pulled successfully"
-                        docker compose up -d --force-recreate && echo "Docker Compose containers started successfully"
+                        docker-compose down
+                        docker-compose up -d --force-recreate && echo "Docker Compose containers started successfully"
                         docker image prune -f
                     '
                     '''
