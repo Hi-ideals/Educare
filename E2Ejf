@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "jaicswamy962/educareimage:latest"
-        E2E_HOST = "216.48.177.81" // replace with your E2E VM's public IP
+        E2E_HOST = "216.48.177.81"
     }
 
     stages {
@@ -42,9 +42,9 @@ pipeline {
 
         stage('Deploy to E2E Cloud') {
             steps {
-                sshagent(['e2e-ssh-key']) { // Replace with Jenkins credential ID for E2E SSH private key
+                sshagent(credentials: ['e2e-ssh-key']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no root@${E2E_HOST} '
+                    ssh -o StrictHostKeyChecking=no -p 7022 root@${E2E_HOST} '
                         if [ ! -d ~/Educare ]; then
                             git clone https://github.com/jaiswamy/Educare.git
                         else
@@ -52,8 +52,8 @@ pipeline {
                         fi
                         cd ~/Educare
                         docker pull ${DOCKER_IMAGE} && echo "Docker image pulled successfully"
-                        docker compose down
-                        docker compose up -d --force-recreate && echo "Docker Compose containers started successfully"
+                        docker-compose down
+                        docker-compose up -d --force-recreate && echo "Docker Compose containers started successfully"
                         docker image prune -f
                     '
                     '''
