@@ -100,7 +100,7 @@ environments {
 			pooled = true
 			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 			//url = "jdbc:mysql://localhost:3306/myschool?useUnicode=yes&characterEncoding=UTF-8"
-			url = "jdbc:mysql://db:3306/educare_prod?useUnicode=yes&characterEncoding=UTF-8"
+			url = "jdbc:mysql://db:3306/educare_prod?useUnicode=yes&characterEncoding=UTF-8&useSSL=false"
 			//url = "jdbc:mysql://localhost:3306/vidya_prod?useUnicode=yes&characterEncoding=UTF-8"
 			username = "educare"
 			password = "EducareHitpL_2019"//For Rg Db And myschool//"MysqlserverhitpL123"//old:mysql123
