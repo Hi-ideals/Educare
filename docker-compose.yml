@@ -9,7 +9,7 @@ services:
       MYSQL_USER: educare
       MYSQL_PASSWORD: EducareHitpL_2019
     ports:
-      - "3306:3306"
+      - "3310:3306"
     volumes:
      - ./db_educare_prod.sql:/docker-entrypoint-initdb.d/db_educare_prod.sql
      - ./mysql/data:/var/lib/mysql
@@ -39,7 +39,7 @@ services:
       MYSQL_USER: educare
       MYSQL_PASSWORD: EducareHitpL_2019
     ports:
-      - "8081:8080"
+      - "9081:8080"
     networks:
       - tomcat-network-educare
 
