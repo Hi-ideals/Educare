@@ -271,7 +271,7 @@ to {
 									<div class="portlet box grey">
 										<div class="portlet-title">
 											<div class="caption">
-												<i class="fa fa-users"></i>List Of Admins
+												<i class="fa fa-users"></i>List Of Adminss
 											</div>
 										</div>
 										<div class="portlet-body">
