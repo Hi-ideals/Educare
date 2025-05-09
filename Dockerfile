@@ -6,7 +6,8 @@ RUN wget https://github.com/grails/grails-core/releases/download/v2.4.5/grails-2
 ENV GRAILS_HOME=/opt/grails
 ENV PATH="$GRAILS_HOME/bin:$PATH"
 COPY ./EduCareDeploy /app
-RUN grails war
+RUN grails clean --non-interactive && \
+    grails war --non-interactive
 
 FROM tomcat:9.0.82-jdk8-temurin
 LABEL "Project"="VETBIDATCOL"
