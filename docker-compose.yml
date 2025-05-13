@@ -33,11 +33,13 @@ services:
       db:
         condition: service_healthy
     environment:
-      MYSQL_HOST: db
-      MYSQL_PORT: 3306
-      MYSQL_DB: educare_prod
-      MYSQL_USER: educare
-      MYSQL_PASSWORD: EducareHitpL_2019
+      - CATALINA_OPTS=-Xms128m -Xmx256m -XX:+UseContainerSupport -XX:MaxRAMPercentage=25.0
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DB=educare_prod
+      - MYSQL_USER=educare
+      - MYSQL_PASSWORD=EducareHitpL_2019
+
     ports:
       - "9081:8080"
     networks:
