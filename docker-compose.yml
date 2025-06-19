@@ -1,3 +1,4 @@
+version: '2.4'
 services:
   db:
     image: mysql:5.6
@@ -33,19 +34,33 @@ services:
       db:
         condition: service_healthy
     environment:
-      - CATALINA_OPTS=-Xms128m -Xmx256m -XX:+UseContainerSupport -XX:MaxRAMPercentage=25.0
+      - CATALINA_OPTS=-Xms128m -Xmx256m -XX:+UseContainerSupport -XX:MaxRAMPercentage=8.0
       - MYSQL_HOST=db
       - MYSQL_PORT=3306
       - MYSQL_DB=educare_prod
       - MYSQL_USER=educare
       - MYSQL_PASSWORD=EducareHitpL_2019
-
+    mem_limit: 512m
     ports:
       - "9081:8080"
     networks:
       - tomcat-network-educare
 
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - "8062:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
+    networks:
+      - tomcat-network-educare
+
 
 networks:
-  tomcat-network-educare:  
+  tomcat-network-educare:
     driver: bridge
